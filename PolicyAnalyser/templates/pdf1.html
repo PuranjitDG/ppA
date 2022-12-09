@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy analyser Document</title>
+</head>
+<body>
+     <div class="header" style=" width:50px ; display: flex; justify-content: center; flex-direction: column;">
+        <!-- <img class="logo"src="./meity_logo" style="display: flex; justify-content:center; padding-right: 5px;" name="meity_logo" alt=""> -->
+        <p style="display: flex; justify-content: center; font-size: 2.5rem; padding-bottom: 30px;">Analysed Privacy Policy for {{appName}}</p>
+    
+    </div>
+    <hr class="solid">
+      <div class="body"style="background-attachment: fixed;">
+    <!-- <img class="logo" src="./" style="opacity: ;"name="cdac" alt=""> -->
+    <div class="bodycontainer" style="display: flex; justify-content: center;">
+     <img class="app_logo" style="border-radius: 10px; justify-content:start;width: 100px; height: 100px;"src="{{appImage}}" alt="">
+     <div class="details" style="display: block;">
+        <p class="card-title" style=" display: block; font-size: 1.5rem;">APP Name: {{appName}}</p>
+        <p class="card-text" style="color:#17924e; display: block; font-size: 1.5rem;"><b>Developer: {{devName}}</b></p>
+        <p class="card-text" style=" display: block; font-size:1.5rem;color:#b11217;"><b>Downloads: {{downloads}}</b></p>
+        <p class="card-text" style=" display: block; font-size: 1.5rem;">Email: {{email}}</p>
+       
+     </div>
+    </div>
+      
+    <p style="text-decoration-style: solid; font-size: 1.8rem; font-weight: bold;">{{Variable3}}</p>
+    <p style="text-decoration-style: solid; font-size: 1.5rem;">{{Variable2}}</p>
+    <p style="text-decoration-style: solid; font-size: 1.8rem; font-weight: bold;">Collects Data</p>
+    <p style="text-decoration-style: solid; font-size: 1.5rem;">{{myList}}</p>
+    <p style=" text-decoration-style: solid;font-size: 1.8rem; font-weight: bold;">Summarized Privacy Policy for {{appName}}</p>
+    <p id="paragraph"style="font-size: 1.5rem;text-decoration-style: solid; " value="">{{Variable}}</p>
+
+   </div>
+    
+    
+    <style>
+     /* Solid border */
+     *{
+        margin: 0;
+        padding: 0;
+     }
+     body::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image:url("./cdac.png");
+      background-size: 500px;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      z-index: -10;
+     }
+     hr.solid {
+            border-top: 3px solid rgb(22, 21, 21);
+            
+       }
+    .logo{
+       border-radius: 50%;
+        width:50px ;
+    
+     }
+    
+   
+    h1{
+        margin-top:20px; 
+        font-size: 3.0rem;
+    }
+    .bodycontainer{
+       display: flex;
+       justify-content: start;
+    }
+    .details{
+         display: block;
+        /* display: flex;
+        flex-direction: column; */
+        justify-content: flex-end;
+    }
+    
+    /* h3{
+        margin-top: 2vh; margin-left: 15vw; margin-right: 15vw;
+    } */
+    </style>
+    <script type="text/javascript">
+      let textToCompare = "Information";
+      let userInfo= [ "IP Address","email address","First name","last name","Phone number","Address","Usage Data","Caller ID","messaging","dialer","device ID","unique identifier","device manufacturer","device","hardware settings","SIM card","Bank card","Permanent Account Number","Aadhaar card","family details","Mobile"];
+      let paragraph  =  document.getElementById("paragraph");
+      let paragraphTxt=paragraph.textContent;
+      
+        textToCompare = textToCompare.replace(/[.*+?^${}()|[\]\\]/g ,"\\$&");
+        let pattern = new RegExp(`${textToCompare}`,"gi");
+        paragraphTxt= paragraph.textContent.replace(pattern,match =>`<mark id="info"><b>${match}</b></mark>`);
+        
+        for (i=0;i<=userInfo.length;i++){
+          userInfo[i]= userInfo[i].replace(/[.*+?^${}()|[\]\\]/g ,"\\$&");
+          let pattern = new RegExp(`${userInfo[i]}`,"gi");
+          // let color=["info","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata"];
+          paragraphTxt= paragraphTxt.replace(pattern,match =>`<mark id="usrdata"><b>${match}</b></mark>`);
+          paragraph.innerHTML=paragraphTxt;
+        }
+        paragraph.innerHTML=paragraphTxt;
+        
+        
+        
+      // }
+      
+      </script>
+    
+</body>
+</html>

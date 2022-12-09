@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static './homestyle.css' %}">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  
+  <title>Privacy Policy Analyser</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./static/cdac_logo.png" alt="cdac logo">
+            <h1>Policy <span>Analyser</span></h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Recent scans</a></li>
+                <li><a href="{% url 'download' %}">Download Policy</a></li>
+                <li><a href="{% url 'summary' %}">Download Summary</a></li>
+            </ul>
+
+        </div>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="top">
+      <div class="img_left"><img src="{{appImage}}" alt="" srcset=""></div>
+      <div class="data_right">
+        <div class="mini_container">
+          <p class="header">App Name:</p>
+          <p class="data">{{appName}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Developer:</p>
+          <p class="data">{{devName}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Email:</p>
+          <p class="data">{{email}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Rating:</p>
+          <p class="data">{{downloads}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Ranking:</p>
+          <p class="data">{{rank}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Category:</p>
+          <p class="data">{{category}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Developer ID:</p>
+          <p class="data">{{appleDevId}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Application ID:</p>
+          <p class="data">{{address}}</p>
+        </div>
+        <div class="mini_container">
+          <p class="header">Policy URL:</p>
+          <p class="data">{{policyURL}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="longdata">
+        <p class="data_header">Permissions to collect Data</p>
+        <p class="data_long">{{myList}}</p>
+      </div>
+      <div class="longdata">
+        <p class="data_header" >Summarized Privacy Policy of {{appName}}</p>
+        <p class="data_long" id="paragraph">{{Variable}}</p>
+      </div>
+      <div class="longdata">
+        <p class="data_header">All Applications of {{devName}}</p>
+        <p class="data_long">{{devAppList}}</p>
+      </div>
+      <div class="longdata">
+        <p class="data_header">Other Applications of the same Category</p>
+        <p class="data_long">{{genreList}}</p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    let textToCompare = "Information";
+    let userInfo = ["IP Address", "email address", "First name", "last name", "Phone number", "Address", "Usage Data", "Caller ID", "messaging", "dialer", "device ID", "unique identifier", "device manufacturer", "device", "hardware settings", "SIM card", "Bank card", "Permanent Account Number", "Aadhaar card", "family details", "Mobile", "Facebook", "AdMob", "Google Play Services", "Storage", "Location", "SD CARD",];
+    let paragraph = document.getElementById("paragraph");
+    let paragraphTxt = paragraph.textContent;
+
+    textToCompare = textToCompare.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let pattern = new RegExp(`${textToCompare}`, "gi");
+    paragraphTxt = paragraph.textContent.replace(pattern, match => `<mark id="info"><b>${match}</b></mark>`);
+
+    for (i = 0; i <= userInfo.length; i++) {
+      userInfo[i] = userInfo[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      let pattern = new RegExp(`${userInfo[i]}`, "gi");
+      // let color=["info","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata"];
+      paragraphTxt = paragraphTxt.replace(pattern, match => `<mark id="usrdata"><b>${match}</b></mark>`);
+      paragraph.innerHTML = paragraphTxt;
+    }
+    paragraph.innerHTML = paragraphTxt;
+
+
+
+      // }
+
+  </script>
+  <style>
+    #info {
+      color:white ;
+      background-color: #b236d7;
+
+    }
+
+    #usrdata {
+      color:white;
+    background-color:#FB2576;
+    }
+  </style>
+  
+</body>
+
+</html>

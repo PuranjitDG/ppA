@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf</title>
+</head>
+<body>
+ <center>
+   <table border="1" cellspacing="0" width="900px">
+     <tr>
+        <th colspan="16" bgcolor="gray"style="padding:5px;color:white;font: size 1.5em;">Policy Analyser Document</th>
+     </tr>
+     <!-- <tr>
+        <th colspan="4" style="padding:5px;">Icon</th>
+        <th colspan="12" style="padding:5px;">Information</th>
+     </tr> -->
+     <tr>
+        <td colspan="4" rowspan="9" style="align-items: centre; justify-content: center; padding: 5px;"><img src="{{appImage}}" alt="app Icon" style="width:100%;"></td>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">App Name</td>
+        <td colspan="10">{{appName}}</td>
+     </tr>
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Developer</td>
+        <td colspan="10" >{{devName}}</td>
+     </tr>
+
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Email</td>
+        <td colspan="10">{{email}}</td>
+     </tr>
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Downloads</td>
+        <td colspan="10">{{downloads}}</td>
+     </tr>
+
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Category</td>
+        <td colspan="10">{{category}}</td>
+     </tr>
+
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Address</td>
+        <td colspan="10">{{address}}</td>
+     </tr>
+
+     <tr>
+        <td colspan="2" bgcolor="gray" style="color:white; padding: 2px;">Policy URL</td>
+        <td colspan="10">{{policyURL}}</td>
+     </tr>
+     <tr>
+        <td colspan="2" bgcolor="Gray" style="color:white; padding: 2px;">Rating</td>
+        <td colspan="10">{{rating}}</td>
+     </tr>
+     <tr>
+        <td colspan="2" bgcolor="Gray" style="color:white; padding: 2px;">Developer ID</td>
+        <td colspan="10">{{text}}</td>
+     </tr>
+     <tr>
+        <th colspan="16" height="50px" bgcolor="Gray" style="color:white; padding: 5px;">Permissions to collect Data</th>
+    </tr>
+    <tr>
+        <td colspan="16" style="padding:5px;">
+            <p>{{myList}}</p>
+            <!-- <p>Something</p> -->
+        </td>
+    </tr>
+    <tr>
+        <th colspan="16" height="50px" bgcolor="Gray" style="color:white; padding: 5px;">Summarized Privacy Policy of {{appName}}</th>
+    </tr>
+    <tr>
+        <td colspan="16" style="padding:3px;">
+            <p id="paragraph">{{Variable}}</p>
+            
+        </td>
+    </tr>
+    <tr>
+        <th colspan="16" height="50px" bgcolor="Gray" style="color:white; padding: 5px;">All Applications of {{devName}}</th>
+    </tr>
+    <tr>
+        <td colspan="16" style="padding:3px;" >
+            <p>{{devAppList}}</p>
+            
+        </td>
+    </tr>
+    <tr>
+        <th colspan="16" height="50px" bgcolor="Gray" style="color:white; padding: 5px;">Other Applications of the same Category</th>
+    </tr>
+    <tr>
+        <td colspan="16" style="padding:3px;">
+            <p>{{genreList}}</p>
+            
+        </td>
+    </tr>
+   </table>
+</center>
+
+
+<script type="text/javascript">
+    let textToCompare = "Information";
+    let userInfo = ["IP Address", "email address", "First name", "last name", "Phone number", "Address", "Usage Data", "Caller ID", "messaging", "dialer", "device ID", "unique identifier", "device manufacturer", "device", "hardware settings", "SIM card", "Bank card", "Permanent Account Number", "Aadhaar card", "family details", "Mobile", "Facebook", "AdMob", "Google Play Services", "Storage", "Location", "SD CARD",];
+    let paragraph = document.getElementById("paragraph");
+    let paragraphTxt = paragraph.textContent;
+
+    textToCompare = textToCompare.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let pattern = new RegExp(`${textToCompare}`, "gi");
+    paragraphTxt = paragraph.textContent.replace(pattern, match => `<mark id="info"><b>${match}</b></mark>`);
+
+    for (i = 0; i <= userInfo.length; i++) {
+      userInfo[i] = userInfo[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      let pattern = new RegExp(`${userInfo[i]}`, "gi");
+      // let color=["info","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata","usrdata"];
+      paragraphTxt = paragraphTxt.replace(pattern, match => `<mark id="usrdata"><b>${match}</b></mark>`);
+      paragraph.innerHTML = paragraphTxt;
+    }
+    paragraph.innerHTML = paragraphTxt;
+
+
+
+      // }
+
+  </script>
+
+       <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .cotainer{
+            display: grid;
+            align-items: center; 
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 5px;
+            background: blue;
+        }
+
+      .column{
+        display: grid;
+        grid-template-rows: 100px 50px;
+        background-color: rgb(0, 255, 149);
+      }
+      /* .image{
+          dis
+       } */
+      .row{
+        display: grid;
+        grid-template-columns: 100px 50px;
+        background-color: burlywood;
+      }
+      .info{
+        display: grid;
+        grid-template-columns: 350px 50px;
+      }
+
+       </style>
+</body>
+</html>
